@@ -41,6 +41,7 @@
             z-index: 1000;
             transition: all 0.3s ease;
             box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
 
         .sidebar.collapsed {
@@ -51,6 +52,11 @@
             padding: 2rem 1.5rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .sidebar-header {
+            padding: 1.5rem 0.5rem;
         }
 
         .logo {
@@ -63,11 +69,23 @@
             justify-content: center;
             margin: 0 auto 1rem;
             box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .logo {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 0.5rem;
         }
 
         .logo i {
             color: white;
             font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .logo i {
+            font-size: 1.4rem;
         }
 
         .logo-text {
@@ -75,10 +93,14 @@
             color: #2c3e50;
             font-size: 1.1rem;
             line-height: 1.2;
+            transition: all 0.3s ease;
         }
 
         .sidebar.collapsed .logo-text {
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            margin: 0;
         }
 
         .user-profile {
@@ -89,6 +111,13 @@
             color: white;
             text-align: center;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .user-profile {
+            padding: 0.75rem 0.5rem;
+            margin: 0.5rem;
+            border-radius: 15px;
         }
 
         .user-avatar {
@@ -100,19 +129,44 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .user-avatar {
+            width: 35px;
+            height: 35px;
+            margin-bottom: 0;
         }
 
         .user-avatar i {
             font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .sidebar.collapsed .user-profile {
-            padding: 1rem;
+        .sidebar.collapsed .user-avatar i {
+            font-size: 1rem;
         }
 
-        .sidebar.collapsed .user-name,
-        .sidebar.collapsed .user-role {
-            display: none;
+        .user-info {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .user-info {
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            opacity: 0.9;
         }
 
         .nav-menu {
@@ -121,6 +175,11 @@
 
         .nav-item {
             margin: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed .nav-item {
+            margin: 0.5rem 0.5rem;
         }
 
         .nav-link {
@@ -132,6 +191,14 @@
             border-radius: 15px;
             transition: all 0.3s ease;
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed .nav-link {
+            justify-content: center;
+            padding: 1rem 0.5rem;
+            border-radius: 12px;
         }
 
         .nav-link:hover,
@@ -142,23 +209,63 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
+        .sidebar.collapsed .nav-link:hover,
+        .sidebar.collapsed .nav-link.active {
+            transform: scale(1.05);
+        }
+
         .nav-link i {
             width: 20px;
             margin-right: 1rem;
             font-size: 1.1rem;
-        }
-
-        .sidebar.collapsed .nav-link span {
-            display: none;
-        }
-
-        .sidebar.collapsed .nav-link {
-            justify-content: center;
-            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
         .sidebar.collapsed .nav-link i {
             margin-right: 0;
+            font-size: 1rem;
+        }
+
+        .nav-link span {
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .sidebar.collapsed .nav-link span {
+            opacity: 0;
+            visibility: hidden;
+            width: 0;
+            overflow: hidden;
+        }
+
+        /* Tooltip for collapsed sidebar */
+        .sidebar.collapsed .nav-link {
+            position: relative;
+        }
+
+        .sidebar.collapsed .nav-link::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+            z-index: 1001;
+        }
+
+        .sidebar.collapsed .nav-link:hover::after {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Main Content */
@@ -396,59 +503,57 @@
             <div class="user-avatar">
                 <i class="fas fa-user"></i>
             </div>
-            <div class="user-name" style="font-weight: 600; margin-bottom: 0.2rem;">
-                {{ auth()->user()->name }}
-            </div>
-            <div class="user-role" style="font-size: 0.8rem; opacity: 0.9;">
-                {{ ucfirst(auth()->user()->role) }}
+            <div class="user-info">
+                <div class="user-name">{{ auth()->user()->name }}</div>
+                <div class="user-role">{{ ucfirst(auth()->user()->role) }}</div>
             </div>
         </div>
 
         <nav class="nav-menu">
             <div class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" data-tooltip="Dashboard">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('anak-kariah.list') }}" class="nav-link {{ request()->routeIs('anak-kariah.*') ? 'active' : '' }}">
+                <a href="{{ route('anak-kariah.list') }}" class="nav-link {{ request()->routeIs('anak-kariah.*') ? 'active' : '' }}" data-tooltip="Anak Kariah Management">
                     <i class="fas fa-users"></i>
                     <span>Anak Kariah Management</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('anak-kariah.statistics') }}" class="nav-link {{ request()->routeIs('*.statistics') ? 'active' : '' }}">
+                <a href="{{ route('anak-kariah.statistics') }}" class="nav-link {{ request()->routeIs('*.statistics') ? 'active' : '' }}" data-tooltip="Reports & Analytics">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports & Analytics</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('admin.carousel.images') }}" class="nav-link {{ request()->routeIs('admin.carousel.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.carousel.images') }}" class="nav-link {{ request()->routeIs('admin.carousel.*') ? 'active' : '' }}" data-tooltip="Event Management">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Event Management</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-tooltip="Notifications">
                     <i class="fas fa-bell"></i>
                     <span>Notifications</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('admin.list') }}" class="nav-link {{ request()->routeIs('admin.list') ? 'active' : '' }}">
+                <a href="{{ route('admin.list') }}" class="nav-link {{ request()->routeIs('admin.list') ? 'active' : '' }}" data-tooltip="Admin Management">
                     <i class="fas fa-user-shield"></i>
                     <span>Admin Management</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-tooltip="Settings">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" class="nav-link" data-tooltip="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>

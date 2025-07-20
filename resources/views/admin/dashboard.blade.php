@@ -5,6 +5,170 @@
 
 @section('additional-css')
 <style>
+    /* Sidebar collapse fixes */
+    .sidebar {
+        overflow-y: auto;
+    }
+
+    .sidebar-header {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .sidebar-header {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .logo {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .logo {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 0.5rem;
+    }
+
+    .logo i {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .logo i {
+        font-size: 1.4rem;
+    }
+
+    .logo-text {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .logo-text {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        margin: 0;
+    }
+
+    .user-profile {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .user-profile {
+        padding: 0.75rem 0.5rem;
+        margin: 0.5rem;
+        border-radius: 15px;
+    }
+
+    /* User avatar scaling - FIXED */
+    .user-avatar {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .user-avatar {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 0;
+    }
+
+    .user-avatar i {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .user-avatar i {
+        font-size: 1rem;
+    }
+
+    /* User info hiding - FIXED */
+    .user-info {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .user-info {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .user-name {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
+    }
+
+    .user-role {
+        font-size: 0.75rem;
+        opacity: 0.9;
+    }
+
+    .nav-item {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .nav-item {
+        margin: 0.5rem 0.5rem;
+    }
+
+    .nav-link {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sidebar.collapsed .nav-link {
+        justify-content: center;
+        padding: 1rem 0.5rem;
+        border-radius: 12px;
+    }
+
+    .nav-link i {
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .nav-link i {
+        margin-right: 0;
+        font-size: 1rem;
+    }
+
+    .nav-link span {
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .sidebar.collapsed .nav-link span {
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        overflow: hidden;
+    }
+
+    .sidebar.collapsed .nav-link:hover,
+    .sidebar.collapsed .nav-link.active {
+        transform: scale(1.05);
+    }
+
+    /* Tooltip system - FIXED */
+    .sidebar.collapsed .nav-link::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+        z-index: 1001;
+    }
+
+    .sidebar.collapsed .nav-link:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
     /* Stats Cards */
     .stats-grid {
         display: grid;
@@ -346,44 +510,44 @@
             <div class="stat-icon">
                 <i class="fas fa-users"></i>
             </div>
-            <span class="stat-number" data-target="{{ $totalAnakKariah ?? 248 }}">{{ $totalAnakKariah ?? 248 }}</span>
+            <span class="stat-number" data-target="{{ $totalAnakKariah ?? 0 }}">{{ $totalAnakKariah ?? 0 }}</span>
             <div class="stat-label">Total Anak Kariah</div>
             <div class="stat-trend trend-up">
                 <i class="fas fa-arrow-up"></i>
-                <span>+12 this month</span>
+                <span>+{{ $newThisMonth ?? 0 }} this month</span>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">
                 <i class="fas fa-user-check"></i>
             </div>
-            <span class="stat-number" data-target="{{ $activeMembers ?? 186 }}">{{ $activeMembers ?? 186 }}</span>
+            <span class="stat-number" data-target="{{ $activeMembers ?? 0 }}">{{ $activeMembers ?? 0 }}</span>
             <div class="stat-label">Active Members</div>
             <div class="stat-trend trend-up">
                 <i class="fas fa-arrow-up"></i>
-                <span>+8 this week</span>
+                <span>+{{ $newActiveThisWeek ?? 0 }} this week</span>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">
                 <i class="fas fa-user-times"></i>
             </div>
-            <span class="stat-number" data-target="{{ $inactiveMembers ?? 62 }}">{{ $inactiveMembers ?? 62 }}</span>
+            <span class="stat-number" data-target="{{ $inactiveMembers ?? 0 }}">{{ $inactiveMembers ?? 0 }}</span>
             <div class="stat-label">Inactive Members</div>
-            <div class="stat-trend trend-down">
-                <i class="fas fa-arrow-down"></i>
-                <span>-3 this week</span>
+            <div class="stat-trend {{ ($changeInactive ?? 0) >= 0 ? 'trend-up' : 'trend-down' }}">
+                <i class="fas fa-arrow-{{ ($changeInactive ?? 0) >= 0 ? 'up' : 'down' }}"></i>
+                <span>{{ $changeInactive ?? 0 }} this week</span>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">
                 <i class="fas fa-user-plus"></i>
             </div>
-            <span class="stat-number" data-target="12">12</span>
+            <span class="stat-number" data-target="{{ $newThisMonth ?? 0 }}">{{ $newThisMonth ?? 0 }}</span>
             <div class="stat-label">New This Month</div>
             <div class="stat-trend trend-up">
                 <i class="fas fa-arrow-up"></i>
-                <span>+5 vs last month</span>
+                <span>+{{ $changeVsLastMonth ?? 0 }} vs last month</span>
             </div>
         </div>
     </div>
@@ -443,27 +607,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($anakKariahs->take(5) ?? [] as $data)
+                        @forelse($anakKariahs ?? [] as $data)
                             <tr>
                                 <td><strong>{{ $loop->iteration }}</strong></td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                                         <div style="width: 35px; height: 35px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.8rem;">
-                                            {{ substr($data->full_name, 0, 1) }}
+                                            {{ substr($data->full_name ?? 'U', 0, 1) }}
                                         </div>
-                                        <strong>{{ $data->full_name }}</strong>
+                                        <strong>{{ $data->full_name ?? 'Unknown' }}</strong>
                                     </div>
                                 </td>
-                                <td>{{ $data->ic_number }}</td>
+                                <td>{{ $data->ic_number ?? 'N/A' }}</td>
                                 <td>
                                     <span style="background: rgba(102, 126, 234, 0.1); color: #667eea; padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.8rem;">
-                                        {{ $data->areas }}
+                                        {{ $data->areas ?? 'N/A' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="status-badge {{ $data->status == 'Active' ? 'status-active' : 'status-inactive' }}">
+                                    @php
+                                        $status = $data->status ?? 'inactive';
+                                        $isActive = strtolower($status) === 'active';
+                                    @endphp
+                                    <span class="status-badge {{ $isActive ? 'status-active' : 'status-inactive' }}">
                                         <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
-                                        {{ ucfirst($data->status) }}
+                                        {{ ucfirst($status) }}
                                     </span>
                                 </td>
                                 <td>{{ $data->created_at ? $data->created_at->format('d M Y') : 'N/A' }}</td>
@@ -494,7 +662,7 @@
                 </a>
             </div>
             <div class="chart-container">
-                @if(isset($chartComponent))
+                @if(isset($chartComponent) && $chartComponent)
                     <livewire:anak-kariah-chart />
                 @else
                     <div class="chart-placeholder">
@@ -534,25 +702,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($admins->take(5) ?? [] as $admin)
+                    @forelse($admins ?? [] as $admin)
                         <tr>
                             <td><strong>{{ $loop->iteration }}</strong></td>
                             <td>
                                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                                     <div style="width: 35px; height: 35px; background: linear-gradient(135deg, #4CAF50, #45a049); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.8rem;">
-                                        {{ substr($admin->name, 0, 1) }}
+                                        {{ substr($admin->name ?? 'A', 0, 1) }}
                                     </div>
-                                    <strong>{{ $admin->name }}</strong>
+                                    <strong>{{ $admin->name ?? 'Unknown' }}</strong>
                                 </div>
                             </td>
-                            <td>{{ $admin->email }}</td>
+                            <td>{{ $admin->email ?? 'N/A' }}</td>
                             <td>
-                                @if($admin->role == 'super_admin')
+                                @php
+                                    $role = $admin->role ?? 'admin';
+                                @endphp
+                                @if($role == 'super_admin')
                                     <span class="status-badge status-super-admin">
                                         <i class="fas fa-crown" style="font-size: 0.7rem;"></i>
                                         Super Admin
                                     </span>
-                                @elseif($admin->role == 'admin')
+                                @elseif($role == 'admin')
                                     <span class="status-badge status-admin">
                                         <i class="fas fa-user-shield" style="font-size: 0.7rem;"></i>
                                         Admin
@@ -560,12 +731,12 @@
                                 @else
                                     <span class="status-badge status-moderator">
                                         <i class="fas fa-user-tie" style="font-size: 0.7rem;"></i>
-                                        {{ ucfirst($admin->role) }}
+                                        {{ ucfirst($role) }}
                                     </span>
                                 @endif
                             </td>
                             <td>
-                                @if($admin->last_login_at)
+                                @if(isset($admin->last_login_at) && $admin->last_login_at)
                                     {{ $admin->last_login_at->diffForHumans() }}
                                 @else
                                     <span style="color: #9e9e9e;">Never</span>
@@ -622,34 +793,47 @@
                 </h3>
             </div>
             <div style="max-height: 200px; overflow-y: auto;">
-                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
-                    <div style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%;"></div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 500; font-size: 0.9rem;">New member registered</div>
-                        <div style="font-size: 0.8rem; color: #64748b;">2 minutes ago</div>
+                @if(isset($recentActivities) && count($recentActivities) > 0)
+                    @foreach($recentActivities as $activity)
+                        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                            <div style="width: 8px; height: 8px; background: {{ $activity['color'] ?? '#4CAF50' }}; border-radius: 50%;"></div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 500; font-size: 0.9rem;">{{ $activity['message'] ?? 'Activity' }}</div>
+                                <div style="font-size: 0.8rem; color: #64748b;">{{ $activity['time'] ?? 'Unknown time' }}</div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <!-- Default activities when no data from database -->
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <div style="width: 8px; height: 8px; background: #4CAF50; border-radius: 50%;"></div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 500; font-size: 0.9rem;">System initialized</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ now()->diffForHumans() }}</div>
+                        </div>
                     </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
-                    <div style="width: 8px; height: 8px; background: #2196F3; border-radius: 50%;"></div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 500; font-size: 0.9rem;">Admin login detected</div>
-                        <div style="font-size: 0.8rem; color: #64748b;">15 minutes ago</div>
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <div style="width: 8px; height: 8px; background: #2196F3; border-radius: 50%;"></div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 500; font-size: 0.9rem;">Admin login detected</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ now()->subMinutes(15)->diffForHumans() }}</div>
+                        </div>
                     </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
-                    <div style="width: 8px; height: 8px; background: #FF9800; border-radius: 50%;"></div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 500; font-size: 0.9rem;">System backup completed</div>
-                        <div style="font-size: 0.8rem; color: #64748b;">1 hour ago</div>
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <div style="width: 8px; height: 8px; background: #FF9800; border-radius: 50%;"></div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 500; font-size: 0.9rem;">System backup completed</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ now()->subHour()->diffForHumans() }}</div>
+                        </div>
                     </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0;">
-                    <div style="width: 8px; height: 8px; background: #9C27B0; border-radius: 50%;"></div>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 500; font-size: 0.9rem;">Database optimized</div>
-                        <div style="font-size: 0.8rem; color: #64748b;">3 hours ago</div>
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0;">
+                        <div style="width: 8px; height: 8px; background: #9C27B0; border-radius: 50%;"></div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 500; font-size: 0.9rem;">Database optimized</div>
+                            <div style="font-size: 0.8rem; color: #64748b;">{{ now()->subHours(3)->diffForHumans() }}</div>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -664,18 +848,20 @@
         
         statNumbers.forEach(stat => {
             const target = parseInt(stat.getAttribute('data-target'));
-            const duration = 2000; // 2 seconds
-            const step = target / (duration / 16); // 60fps
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += step;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                stat.textContent = Math.floor(current);
-            }, 16);
+            if (target > 0) {
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            }
         });
 
         // Add hover effects to table rows
