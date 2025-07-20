@@ -1,66 +1,259 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# AKMS 2.0 - Anak Kariah Management System 🕌
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+*Masjid Al-Irsyad Management System*
 
-## About Laravel
+A comprehensive web-based management system designed for Masjid Al-Irsyad to efficiently manage and monitor their Anak Kariah (community members/beneficiaries). The system provides modern admin dashboard functionality with a beautiful, responsive glassmorphism design.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Laravel](https://img.shields.io/badge/Laravel-9.x%2F10.x-red.svg)
+![PHP](https://img.shields.io/badge/PHP-8.0%2B-blue.svg)
+![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-orange.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple.svg)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Modern Admin Dashboard** with glassmorphism design and responsive interface
+- **Member Management** - Complete CRUD operations for Anak Kariah with status tracking
+- **Advanced Analytics** - Interactive charts and data visualization with Chart.js
+- **Event Management** - Carousel management for mosque activities and announcements
+- **Admin User Management** - Role-based access control and user administration
+- **Real-time Updates** - Dynamic interactions powered by Laravel Livewire
+- **Export Functionality** - CSV export capabilities for data management
+- **Search & Filtering** - Advanced search and filtering capabilities
+- **Mobile-Friendly** - Fully responsive design for all devices
 
-## Learning Laravel
+## 🚀 Quick Start
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Before you begin, ensure you have the following installed:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP 8.0** or higher
+- **Composer** (PHP package manager)
+- **MySQL/MariaDB 5.7+** or PostgreSQL
+- **Node.js & NPM** (for asset compilation)
+- **Web server** (Apache/Nginx) for production
 
-## Laravel Sponsors
+**Required PHP Extensions:**
+- OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON, BCMath
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Installation
 
-### Premium Partners
+1. **Clone the repository**
+   ```bash
+   git clone [your-repo-url]
+   cd AKMS2.0
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. **Install dependencies**
+   ```bash
+   # Install PHP dependencies
+   composer install
+   
+   # Install Node.js dependencies (if any)
+   npm install
+   ```
 
-## Contributing
+3. **Environment setup**
+   ```bash
+   # Copy environment file
+   cp .env.example .env
+   
+   # Generate application key
+   php artisan key:generate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Database configuration**
+   
+   Edit your `.env` file with your database credentials:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=akms_database
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
 
-## Code of Conduct
+5. **Database setup**
+   ```bash
+   # Run database migrations
+   php artisan migrate
+   
+   # Seed database (optional)
+   php artisan db:seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Create Livewire components**
+   ```bash
+   php artisan make:livewire AnakKariahChart
+   ```
 
-## Security Vulnerabilities
+7. **Start development server**
+   ```bash
+   php artisan serve
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   Your application will be available at `http://localhost:8000`
 
-## License
+## 🔧 Technology Stack
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Backend:** PHP 8.x with Laravel Framework (9.x/10.x)
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+- **Real-time:** Laravel Livewire for dynamic interactions
+- **Database:** MySQL/MariaDB
+- **Styling:** Bootstrap 5 + Custom glassmorphism design
+- **Icons:** Font Awesome 6.4.0, Bootstrap Icons
+- **Charts:** Chart.js for data visualization
+- **Typography:** Inter font (Google Fonts)
+
+## 💻 Usage
+
+### Admin Dashboard
+Access the admin dashboard to view comprehensive analytics, manage members, and oversee mosque activities.
+
+### Member Management
+- Add new Anak Kariah members
+- Update member information and status
+- View detailed member profiles
+- Export member data to CSV
+
+### Analytics & Reporting
+- View real-time charts and statistics
+- Track member growth and engagement
+- Generate reports for administrative purposes
+
+### Event Management
+- Manage mosque events and announcements
+- Update carousel content for public display
+- Schedule and organize community activities
+
+## 🎨 Design Features
+
+The system features a modern glassmorphism design with:
+- Translucent backgrounds with backdrop filters
+- Smooth animations and transitions
+- Responsive grid layouts
+- Modern color schemes and typography
+- Intuitive user interface elements
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Key environment variables to configure:
+
+```env
+APP_NAME="AKMS 2.0"
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.com
+
+DB_CONNECTION=mysql
+DB_HOST=your-host
+DB_PORT=3306
+DB_DATABASE=your-database
+DB_USERNAME=your-username
+DB_PASSWORD=your-password
+```
+
+### Additional Configuration
+
+- Configure mail settings for notifications
+- Set up file storage for member documents
+- Configure backup schedules
+- Set up SSL certificates for production
+
+## 🚀 Deployment
+
+### Production Deployment
+
+1. **Server Setup**
+   - Configure web server (Apache/Nginx)
+   - Install PHP 8.0+ and required extensions
+   - Set up MySQL/MariaDB database
+
+2. **Application Deployment**
+   ```bash
+   # Install dependencies
+   composer install --optimize-autoloader --no-dev
+   
+   # Configure environment
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   
+   # Run migrations
+   php artisan migrate --force
+   ```
+
+3. **Security**
+   - Set proper file permissions
+   - Configure SSL certificates
+   - Set up firewall rules
+   - Regular security updates
+
+## 🤝 Contributing
+
+We welcome contributions to AKMS 2.0! Please follow these guidelines:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+### Code Style
+
+- Follow **PSR-12** coding standards
+- Use meaningful variable and function names
+- Add comments for complex logic
+- Write tests for new features
+
+### Testing
+
+```bash
+# Run PHPUnit tests
+php artisan test
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Support
+
+If you encounter any issues or have questions:
+
+- **Issues:** Open an issue on GitHub
+- **Email:** [your-email@example.com]
+- **Documentation:** Check the Wiki section
+
+## 🛣️ Roadmap
+
+### Upcoming Features
+
+- [ ] **Mobile App** - React Native companion app
+- [ ] **API Integration** - RESTful API for third-party integrations
+- [ ] **Advanced Reporting** - PDF report generation
+- [ ] **Notification System** - Email/SMS notifications
+- [ ] **Multi-language Support** - Bahasa Malaysia and English
+- [ ] **Backup System** - Automated database backups
+- [ ] **Audit Trail** - Comprehensive activity logging
+
+### Version History
+
+- **v2.0.0** - Initial release with modern UI and core features
+- **v1.x.x** - Legacy version (deprecated)
+
+## 🙏 Acknowledgments
+
+- **Masjid Al-Irsyad** - For the opportunity to serve the community
+- **Laravel Community** - For the excellent framework and resources
+- **Bootstrap Team** - For the responsive CSS framework
+- **Font Awesome** - For the beautiful icons
+
+---
+
+**Developed with ❤️ for Masjid Al-Irsyad Community**
+
+*"And whoever does righteous deeds, whether male or female, while being a believer - those will enter Paradise and will not be wronged, [even as much as] the speck on a date seed."* - Quran 4:124
