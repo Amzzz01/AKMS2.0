@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donate - AKMS</title>
+  <title>Donate-AKMS</title>
   <style>
     /* Global Styles */
     body {
@@ -162,7 +162,7 @@
 
     <!-- QR Code Image -->
     <div class="qr-code">
-      <img src="{{ asset('images/Mosque QR.jpg') }}" alt="QR Code for Donation">
+      <img src="{{ asset('images/MosqueQR.jpg') }}" alt="QR Code for Donation">
     </div>
 
     <!-- Bank Details -->
@@ -177,7 +177,7 @@
 
   <!-- Footer Section -->
   <footer>
-    <p>&copy; 2024 AKMS v1.0. All rights reserved</p>
+    <p>&copy; 2025 AKMS v1.0. All rights reserved</p>
   </footer>
 </body>
 </html>
