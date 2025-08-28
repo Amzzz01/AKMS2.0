@@ -547,7 +547,7 @@
                 </a>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link" data-tooltip="Settings">
+                <a href="{{ route('#') }}" class="nav-link" data-tooltip="Settings">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
