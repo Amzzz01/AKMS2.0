@@ -727,8 +727,8 @@
     <div class="modal-content">
       <h2><i class="fas fa-qrcode"></i> QR Code Sumbangan</h2>
       <p>Imbas kod ini untuk menyumbang:</p>
-      <img id="qrCodeImage" src="data:image/svg+xml,<svg xmlns='https://ibb.co/fVnzfGC9' viewBox='0 0 300 300'><rect width='300' height='300' fill='white'/><rect x='50' y='50' width='200' height='200' fill='black'/><rect x='75' y='75' width='150' height='150' fill='white'/><text x='150' y='160' text-anchor='middle' fill='black' font-family='Arial' font-size='16'>QR Code</text></svg>" alt="QR Code" style="width: 300px; height: 300px; margin: 20px 0; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-
+       <img src="{{ asset('images/MosqueQR.jpg') }}" alt="QR Code for Donation">
+       
       <button class="close-button" onclick="downloadQRCode()">
         <i class="fas fa-download"></i> Download QR Code
       </button>
