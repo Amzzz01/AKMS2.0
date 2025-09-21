@@ -523,7 +523,7 @@
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('#') }}" class="nav-link {{ request()->routeIs('*.statistics') ? 'active' : '' }}" data-tooltip="Reports & Analytics">
+                <a href="{{ route('anak-kariah.statistics') }}" class="nav-link {{ request()->routeIs('*.statistics') ? 'active' : '' }}" data-tooltip="Reports & Analytics">
                     <i class="fas fa-chart-bar"></i>
                     <span>Reports & Analytics</span>
                 </a>
@@ -547,7 +547,7 @@
                 </a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('#') }}" class="nav-link" data-tooltip="Settings">
+                <a href="#" class="nav-link" data-tooltip="Settings">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
