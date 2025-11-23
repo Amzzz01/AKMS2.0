@@ -11,66 +11,76 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        // Fetch data for the dashboard
-        $totalAnakKariah = AnakKariah::count(); // Total registered Anak Kariah
-        $activeMembers = AnakKariah::where('status', 'active')->count(); // Active members
-        $inactiveMembers = AnakKariah::where('status', 'inactive')->count(); // Inactive members
-    
-        // Get recent registrations (latest 5)
-        $recentRegistrations = AnakKariah::latest()->take(5)->get();
-        $anakKariahs = AnakKariah::orderBy('created_at', 'desc')->get();
-    
-        // Fetch admins
-        $admins = User::where('role', 'admin')->latest()->get();
-    
-        $allData = DB::table('anak_kariah')->get();
-    
-        // Get monthly trends (new members added each month in the current year)
+        // Basic statistics
+        $totalAnakKariah = AnakKariah::count();
+        $activeMembers = AnakKariah::where('status', 'active')->count();
+        $inactiveMembers = AnakKariah::where('status', 'inactive')->count();
+        
+        // Calculate trends (this month vs last month)
+        $currentMonth = now()->month;
+        $currentYear = now()->year;
+        $lastMonth = now()->subMonth()->month;
+        $lastMonthYear = now()->subMonth()->year;
+        
+        $newThisMonth = AnakKariah::whereMonth('created_at', $currentMonth)
+            ->whereYear('created_at', $currentYear)
+            ->count();
+            
+        $newLastMonth = AnakKariah::whereMonth('created_at', $lastMonth)
+            ->whereYear('created_at', $lastMonthYear)
+            ->count();
+            
+        $changeVsLastMonth = $newThisMonth - $newLastMonth;
+        
+        // This week stats
+        $newActiveThisWeek = AnakKariah::where('status', 'active')
+            ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
+            ->count();
+            
+        $changeInactive = 0; // You can calculate this based on your needs
+        
+        // Recent Anak Kariah data for the table
+        $anakKariahs = AnakKariah::latest()
+            ->take(10)
+            ->get();
+        
+        // Get all data for potential chart usage
+        $allData = AnakKariah::all();
+        
+        // Monthly trends for charts
         $monthlyTrends = AnakKariah::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
             ->whereYear('created_at', date('Y'))
             ->groupBy('month')
             ->orderBy('month')
             ->get();
-    
-        // Pass data to the view
+        
+        // Area statistics - check your actual column name
+        $areaStats = AnakKariah::select('areas', DB::raw('COUNT(*) as count'))
+            ->whereNotNull('areas')
+            ->groupBy('areas')
+            ->get();
+        
+        $areas = $areaStats->pluck('areas');
+        $counts = $areaStats->pluck('count');
+        
+        // Fetch admins
+        $admins = User::where('role', 'admin')->latest()->get();
+        
+        // Pass all data to the view
         return view('admin.dashboard', compact(
-            'anakKariahs',
             'totalAnakKariah',
             'activeMembers',
             'inactiveMembers',
-            'recentRegistrations',
+            'newThisMonth',
+            'newActiveThisWeek',
+            'changeInactive',
+            'changeVsLastMonth',
+            'anakKariahs',
             'allData',
             'monthlyTrends',
-            'admins' // Ensure this is included
-        ));
-    }
-    
-
-
-    public function dashboard()
-    {
-        $anakKariahs = AnakKariah::all(); // Fetch all data
-        $totalAnakKariah = $anakKariahs->count();
-        $activeMembers = $anakKariahs->where('status', 'active')->count();
-        $inactiveMembers = $anakKariahs->where('status', 'inactive')->count();
-    
-        // Fetch area statistics
-        $areaStats = AnakKariah::select('area', DB::raw('COUNT(*) as count'))
-            ->groupBy('area')
-            ->get();
-
-        $areas = $areaStats->pluck('area'); // Extract areas
-        $counts = $areaStats->pluck('count'); // Extract counts
-
-        // Pass data to the view
-        return view('admin.dashboard', compact(
-            'totalAnakKariah',
-            'activeMembers',
-            'inactiveMembers',
             'areas',
             'counts',
-            'anakKariahs' // Pass recent records
+            'admins'
         ));
     }
-    
 }
