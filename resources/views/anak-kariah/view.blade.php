@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* ==============================================
+           MOBILE-FIRST RESPONSIVE DESIGN
+           Base styles for mobile, then scale UP
+           ============================================== */
+
         * {
             margin: 0;
             padding: 0;
@@ -30,83 +35,82 @@
             min-height: 100vh;
         }
 
-        /* Enhanced Header */
-        header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+        /* ===== MOBILE HEADER (BASE) ===== */
+        /* Mobile-first header styles */
+        .registration-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 1rem;
+            /* Reduced from 1.25rem */
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            /* Reduced from 1.5rem */
         }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .logo i {
+        .header-icon {
             font-size: 2rem;
-            color: #f39c12;
-            animation: glow 2s ease-in-out infinite alternate;
+            /* Reduced from 2.5rem */
+            margin-bottom: 0.25rem;
+            display: block;
         }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px #f39c12;
-            }
-
-            to {
-                text-shadow: 0 0 20px #f39c12, 0 0 30px #f39c12;
-            }
+        .registration-header h1 {
+            color: white;
+            font-size: 1.1rem;
+            /* Reduced from 1.25rem */
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            line-height: 1.2;
         }
 
         .home-button {
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.4rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.35rem 0.75rem;
+            /* Reduced further */
+            border-radius: 16px;
+            /* Smaller radius */
+            text-decoration: none;
+            font-size: 0.75rem;
+            /* Reduced from 0.8rem */
+            margin-top: 0;
+            transition: background 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .home-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
         }
 
-        /* Main Content Container */
+        /* Tablet and up */
+        @media (min-width: 768px) {
+            .registration-header {
+                padding: 2.5rem 2rem;
+            }
+
+            .registration-header h1 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* ===== MOBILE MAIN CONTENT (BASE) ===== */
         .main-content {
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 20px 15px;
         }
 
-        /* Enhanced Form Container */
+        /* ===== MOBILE FORM CONTAINER (BASE) ===== */
         .form-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 15px;
+            padding: 25px 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
@@ -151,37 +155,27 @@
 
         .form-title {
             color: #2c3e50;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 600;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             position: relative;
         }
 
         .form-subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .form-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(45deg, #3498db, #e74c3c);
-            border-radius: 2px;
-        }
-
-        /* Alert Messages */
-        .alert {
-            padding: 15px 20px;
-            border-radius: 10px;
             margin-bottom: 20px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* ===== MOBILE ALERTS (BASE) ===== */
+        .alert {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -213,52 +207,21 @@
             border: 1px solid #f5c6cb;
         }
 
-        /* Enhanced Image Container */
-        /* Enhanced Image/Map Container - Mobile First */
+        /* ===== MOBILE IMAGE/MAP CONTAINER (BASE) ===== */
         .image-container {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             width: 100%;
-            height: 300px;
-            border-radius: 15px;
+            height: 250px;
+            border-radius: 12px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        /* Mobile styles (default) */
-        @media (max-width: 767px) {
-            .image-container {
-                height: 250px;
-                margin-bottom: 20px;
-                border-radius: 12px;
-            }
-        }
-
-        /* Tablet styles */
-        @media (min-width: 768px) {
-            .image-container {
-                height: 350px;
-            }
-        }
-
-        /* Desktop styles */
-        @media (min-width: 1024px) {
-            .image-container {
-                height: 400px;
-            }
-        }
-
-        /* Large desktop styles */
-        @media (min-width: 1200px) {
-            .image-container {
-                height: 450px;
-            }
-        }
-
-        /* Enhanced Form Fields */
+        /* ===== MOBILE FORM FIELDS (BASE) ===== */
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
         }
 
@@ -267,7 +230,7 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: #2c3e50;
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -279,10 +242,10 @@
 
         .form-control {
             width: 100%;
-            padding: 15px 20px;
+            padding: 12px 15px;
             border: 2px solid #e1e8ed;
-            border-radius: 12px;
-            font-size: 1rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
             color: #333;
             background: #ffffff;
             transition: all 0.3s ease;
@@ -307,7 +270,7 @@
 
         .invalid-feedback {
             color: #e74c3c;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             margin-top: 5px;
             display: flex;
             align-items: center;
@@ -316,29 +279,24 @@
 
         textarea.form-control {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         select.form-control {
             cursor: pointer;
         }
 
-        /* Enhanced Checkbox */
+        /* ===== MOBILE CHECKBOX (BASE) ===== */
         .checkbox-container {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin: 25px 0;
-            padding: 20px;
+            gap: 12px;
+            margin: 20px 0;
+            padding: 15px;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 2px solid #e1e8ed;
             transition: all 0.3s ease;
-        }
-
-        .checkbox-container:hover {
-            border-color: #3498db;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
         }
 
         .checkbox-wrapper {
@@ -347,8 +305,8 @@
 
         .checkbox-wrapper input[type="checkbox"] {
             appearance: none;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border: 2px solid #3498db;
             border-radius: 6px;
             background: white;
@@ -369,26 +327,26 @@
             transform: translate(-50%, -50%);
             color: white;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .checkbox-label {
             flex: 1;
             color: #555;
             line-height: 1.5;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
-        /* Enhanced Submit Button */
+        /* ===== MOBILE SUBMIT BUTTON (BASE) ===== */
         .submit-button {
             width: 100%;
-            padding: 18px;
-            font-size: 1.2rem;
+            padding: 15px;
+            font-size: 1rem;
             font-weight: 600;
             color: white;
             background: linear-gradient(45deg, #e74c3c, #c0392b);
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
@@ -407,66 +365,27 @@
             box-shadow: none;
         }
 
-        .submit-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .submit-button:hover::before {
-            left: 100%;
-        }
-
         .submit-button:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
         }
 
-        .submit-button:active:not(:disabled) {
-            transform: translateY(-1px);
-        }
-
-        /* Loading Spinner */
-        .loading-spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid transparent;
-            border-top: 2px solid #ffffff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Input Icons */
+        /* ===== MOBILE INPUT GROUP (BASE) ===== */
         .input-group {
             position: relative;
         }
 
         .input-icon {
             position: absolute;
-            right: 15px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #3498db;
             pointer-events: none;
+            font-size: 0.9rem;
         }
 
-        /* Success Popup Styles */
+        /* ===== MOBILE POPUP (BASE) ===== */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -480,6 +399,7 @@
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s ease;
+            padding: 20px;
         }
 
         .popup-overlay.show {
@@ -498,39 +418,14 @@
 
         .popup-content {
             background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 15px;
+            padding: 30px 20px;
             max-width: 500px;
-            width: 90%;
+            width: 100%;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             position: relative;
             animation: slideInScale 0.4s ease;
-            border: 3px solid transparent;
-            background-clip: padding-box;
-        }
-
-        .popup-content::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, #27ae60, #2ecc71, #3498db, #e74c3c);
-            border-radius: 20px;
-            z-index: -1;
-            animation: gradientRotate 3s linear infinite;
-        }
-
-        @keyframes gradientRotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
         }
 
         @keyframes slideInScale {
@@ -546,9 +441,9 @@
         }
 
         .popup-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             color: #27ae60;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: bounce 1s ease infinite;
         }
 
@@ -572,37 +467,33 @@
         }
 
         .popup-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
         }
 
         .popup-message {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #555;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
         .popup-buttons {
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            gap: 12px;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .popup-button {
             background: linear-gradient(45deg, #27ae60, #2ecc71);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -610,24 +501,8 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .popup-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .popup-button:hover::before {
-            left: 100%;
+            justify-content: center;
+            gap: 8px;
         }
 
         .popup-button:hover {
@@ -635,77 +510,265 @@
             box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
         }
 
-        .popup-button.secondary {
-            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
-            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        .loading-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid transparent;
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .popup-button.secondary:hover {
-            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* ===== TABLET STYLES (768px and up) ===== */
+        @media (min-width: 768px) {
             .header-content {
-                flex-direction: column;
-                gap: 15px;
-                padding: 0 15px;
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 720px;
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .logo i {
+                font-size: 1.8rem;
+            }
+
+            .home-button {
+                padding: 12px 20px;
+                font-size: 1rem;
             }
 
             .main-content {
-                padding: 20px 15px;
+                max-width: 750px;
+                padding: 25px 20px;
             }
 
             .form-container {
-                padding: 30px 20px;
+                padding: 35px 40px;
+                border-radius: 18px;
             }
 
             .form-title {
                 font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .form-subtitle {
+                font-size: 1rem;
+                margin-bottom: 25px;
             }
 
             .image-container {
-                height: 250px;
+                height: 350px;
+                margin-bottom: 25px;
+            }
+
+            .form-group {
+                margin-bottom: 22px;
+            }
+
+            .form-group label {
+                font-size: 0.95rem;
+            }
+
+            .form-control {
+                padding: 14px 18px;
+                font-size: 1rem;
+                border-radius: 11px;
+            }
+
+            textarea.form-control {
+                min-height: 110px;
+            }
+
+            .checkbox-container {
+                padding: 18px;
+                margin: 22px 0;
+            }
+
+            .checkbox-label {
+                font-size: 0.9rem;
+            }
+
+            .submit-button {
+                padding: 16px;
+                font-size: 1.1rem;
+                border-radius: 11px;
             }
 
             .popup-content {
-                padding: 30px 20px;
-                margin: 20px;
-            }
-
-            .popup-title {
-                font-size: 1.7rem;
-            }
-
-            .popup-buttons {
-                flex-direction: column;
-            }
-
-            .popup-button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .form-container {
-                padding: 25px 15px;
-            }
-
-            .form-title {
-                font-size: 1.8rem;
-            }
-
-            .popup-content {
-                padding: 25px 15px;
+                padding: 35px 25px;
+                border-radius: 18px;
             }
 
             .popup-icon {
-                font-size: 3rem;
+                font-size: 3.5rem;
+                margin-bottom: 18px;
             }
 
             .popup-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .popup-message {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+
+            .popup-buttons {
+                flex-direction: row;
+            }
+
+            .popup-button {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== DESKTOP STYLES (1024px and up) ===== */
+        @media (min-width: 1024px) {
+            .header-content {
+                max-width: 980px;
+            }
+
+            .logo {
                 font-size: 1.5rem;
+            }
+
+            .logo i {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                max-width: 980px;
+                padding: 30px 20px;
+            }
+
+            .form-container {
+                padding: 40px 60px;
+                border-radius: 20px;
+            }
+
+            .form-title {
+                font-size: 2.5rem;
+            }
+
+            .form-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .image-container {
+                height: 400px;
+                margin-bottom: 30px;
+                border-radius: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 25px;
+            }
+
+            .form-group label {
+                font-size: 1rem;
+            }
+
+            .form-control {
+                padding: 15px 20px;
+                border-radius: 12px;
+            }
+
+            textarea.form-control {
+                min-height: 120px;
+            }
+
+            .checkbox-container {
+                padding: 20px;
+                margin: 25px 0;
+                border-radius: 12px;
+            }
+
+            .checkbox-wrapper input[type="checkbox"] {
+                width: 24px;
+                height: 24px;
+            }
+
+            .checkbox-label {
+                font-size: 0.95rem;
+            }
+
+            .submit-button {
+                padding: 18px;
+                font-size: 1.2rem;
+                border-radius: 12px;
+            }
+
+            .input-icon {
+                right: 15px;
+                font-size: 1rem;
+            }
+
+            .popup-content {
+                padding: 40px;
+                border-radius: 20px;
+            }
+
+            .popup-icon {
+                font-size: 4rem;
+                margin-bottom: 20px;
+            }
+
+            .popup-title {
+                font-size: 2rem;
+            }
+
+            .popup-message {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .popup-button {
+                padding: 15px 30px;
+            }
+        }
+
+        /* ===== LARGE DESKTOP STYLES (1200px and up) ===== */
+        @media (min-width: 1200px) {
+            .header-content {
+                max-width: 1140px;
+            }
+
+            .main-content {
+                max-width: 1140px;
+            }
+
+            .image-container {
+                height: 450px;
+            }
+        }
+
+        /* ===== EXTRA LARGE DESKTOP (1400px and up) ===== */
+        @media (min-width: 1400px) {
+            .header-content {
+                max-width: 1320px;
+            }
+
+            .main-content {
+                max-width: 1320px;
             }
         }
     </style>
@@ -713,16 +776,12 @@
 
 <body>
     <!-- HEADER SECTION -->
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-mosque"></i>
-                <strong>Pendaftaran Anak Kariah</strong>
-            </div>
-            <a href="{{ route('welcome') }}" class="home-button">
-                <i class="fas fa-home"></i> Halaman Utama
-            </a>
-        </div>
+    <header class="registration-header">
+        <span class="header-icon">🕌</span>
+        <h1>Pendaftaran Anak Kariah</h1>
+        <a href="{{ route('welcome') }}" class="home-button">
+            <i class="fas fa-home"></i> Halaman Utama
+        </a>
     </header>
 
     <!-- MAIN CONTENT -->
@@ -733,7 +792,6 @@
             </h1>
             <p class="form-subtitle">Masjid Al-Irsyad, Telok Bagan - Sila lengkapkan maklumat di bawah</p>
 
-            <!-- Success/Error Messages (Hidden if using popup) -->
             @if (session('error'))
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i>
@@ -741,8 +799,6 @@
                 </div>
             @endif
 
-            <!-- Enhanced Image Container -->
-            <!-- Include the map view -->
             <div class="image-container">
                 @include('anak-kariah.map-view', [
                     'boundaries' => \App\Models\KariahBoundary::where('is_active', true)->get(),
@@ -948,114 +1004,25 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-        // Check if there's a success message from Laravel session
         @if (session('success'))
             document.addEventListener('DOMContentLoaded', function() {
-                showSuccessPopup();
+                document.getElementById('successPopup').classList.add('show');
             });
         @endif
 
-        // Form submission handling
         document.getElementById('anak-kariah-form').addEventListener('submit', function(e) {
             const submitBtn = document.getElementById('submitBtn');
             const loadingSpinner = document.getElementById('loadingSpinner');
             const submitIcon = document.getElementById('submitIcon');
             const submitText = document.getElementById('submitText');
 
-            // Show loading state
             submitBtn.disabled = true;
             loadingSpinner.style.display = 'block';
             submitIcon.style.display = 'none';
             submitText.textContent = 'Memproses...';
-
-            // Let the form submit naturally to Laravel
-            // Loading state will be reset when page reloads
         });
 
-        // Show success popup function
-        function showSuccessPopup() {
-            const popup = document.getElementById('successPopup');
-            popup.classList.add('show');
-
-            // Add confetti effect
-            createConfetti();
-
-            // Auto-hide after 30 seconds if user doesn't interact
-            setTimeout(() => {
-                if (popup.classList.contains('show')) {
-                    popup.classList.remove('show');
-                }
-            }, 30000);
-        }
-
-        // Hide popup function
-        function hideSuccessPopup() {
-            document.getElementById('successPopup').classList.remove('show');
-        }
-
-        // Close popup when clicking outside
-        document.getElementById('successPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideSuccessPopup();
-            }
-        });
-
-        // Close popup with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                hideSuccessPopup();
-            }
-        });
-
-        // Confetti effect function
-        function createConfetti() {
-            const colors = ['#27ae60', '#3498db', '#e74c3c', '#f39c12', '#9b59b6'];
-            const confettiCount = 100;
-
-            for (let i = 0; i < confettiCount; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.cssText = `
-                        position: fixed;
-                        width: 10px;
-                        height: 10px;
-                        background: ${colors[Math.floor(Math.random() * colors.length)]};
-                        left: ${Math.random() * 100}vw;
-                        top: -10px;
-                        z-index: 10000;
-                        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-                        animation: confettiFall ${2 + Math.random() * 3}s linear forwards;
-                        transform: rotate(${Math.random() * 360}deg);
-                    `;
-
-                    document.body.appendChild(confetti);
-
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 5000);
-                }, i * 10);
-            }
-        }
-
-        // Add confetti animation CSS
-        const confettiStyle = document.createElement('style');
-        confettiStyle.textContent = `
-            @keyframes confettiFall {
-                0% {
-                    transform: translateY(-10px) rotate(0deg);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(100vh) rotate(720deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(confettiStyle);
-
-        // IC Number formatting
         document.getElementById('ic_number').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length >= 6) {
@@ -1067,7 +1034,6 @@
             e.target.value = value;
         });
 
-        // Phone number formatting
         document.getElementById('phone_number').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length >= 3) {
@@ -1076,135 +1042,12 @@
             e.target.value = value;
         });
 
-        // Add ripple effect to buttons
-        document.querySelectorAll('button, .home-button, .popup-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple 0.6s ease-out;
-                    pointer-events: none;
-                `;
-
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-
-        // Add ripple animation CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Form field animations
-        document.querySelectorAll('.form-control').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.classList.add('focused');
-            });
-
-            input.addEventListener('blur', function() {
-                this.parentElement.classList.remove('focused');
-            });
-        });
-
-        // Auto-hide error alerts after 8 seconds
-        document.querySelectorAll('.alert-danger').forEach(alert => {
-            setTimeout(() => {
-                alert.style.opacity = '0';
-                alert.style.transform = 'translateY(-20px)';
-                setTimeout(() => {
-                    alert.remove();
-                }, 300);
-            }, 8000);
-        });
-
-        // Set max date for date of birth (no future dates)
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date_of_birth').setAttribute('max', today);
 
-        // Set min date for date of birth (reasonable minimum age)
         const minDate = new Date();
-        minDate.setFullYear(minDate.getFullYear() - 30); // 30 years ago
+        minDate.setFullYear(minDate.getFullYear() - 30);
         document.getElementById('date_of_birth').setAttribute('min', minDate.toISOString().split('T')[0]);
-
-        // Form validation enhancements
-        document.getElementById('anak-kariah-form').addEventListener('submit', function(e) {
-            let isValid = true;
-            const requiredFields = this.querySelectorAll('[required]');
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    field.classList.remove('is-invalid');
-                }
-            });
-
-            // IC Number validation
-            const icNumber = document.getElementById('ic_number').value;
-            const icPattern = /^\d{6}-\d{2}-\d{4}$/;
-            if (!icPattern.test(icNumber)) {
-                document.getElementById('ic_number').classList.add('is-invalid');
-                isValid = false;
-            }
-
-            // Phone number validation
-            const phoneNumber = document.getElementById('phone_number').value;
-            const phonePattern = /^\d{3}-\d{7,8}$/;
-            if (!phonePattern.test(phoneNumber)) {
-                document.getElementById('phone_number').classList.add('is-invalid');
-                isValid = false;
-            }
-
-            if (!isValid) {
-                e.preventDefault();
-                // Reset button state
-                const submitBtn = document.getElementById('submitBtn');
-                const loadingSpinner = document.getElementById('loadingSpinner');
-                const submitIcon = document.getElementById('submitIcon');
-                const submitText = document.getElementById('submitText');
-
-                submitBtn.disabled = false;
-                loadingSpinner.style.display = 'none';
-                submitIcon.style.display = 'inline';
-                submitText.textContent = 'Daftar Sekarang';
-
-                // Show error message
-                alert('Sila lengkapkan semua maklumat dengan betul sebelum menghantar.');
-            }
-        });
-
-        // Remove invalid class on input
-        document.querySelectorAll('.form-control').forEach(input => {
-            input.addEventListener('input', function() {
-                this.classList.remove('is-invalid');
-            });
-        });
     </script>
 </body>
 
