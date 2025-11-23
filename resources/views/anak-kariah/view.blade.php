@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <title>Pendaftaran Anak Kariah - Masjid Al-Irsyad</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             margin: 0;
@@ -15,7 +16,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             overflow-x: hidden;
         }
@@ -36,7 +38,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
         }
 
@@ -64,8 +66,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 0 0 5px #f39c12; }
-            to { text-shadow: 0 0 20px #f39c12, 0 0 30px #f39c12; }
+            from {
+                text-shadow: 0 0 5px #f39c12;
+            }
+
+            to {
+                text-shadow: 0 0 20px #f39c12, 0 0 30px #f39c12;
+            }
         }
 
         .home-button {
@@ -100,15 +107,22 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
             animation: slideInUp 0.8s ease;
         }
 
         @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .form-container::before {
@@ -124,8 +138,15 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .form-title {
@@ -169,8 +190,15 @@
         }
 
         @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .alert-success {
@@ -186,50 +214,46 @@
         }
 
         /* Enhanced Image Container */
+        /* Enhanced Image/Map Container - Mobile First */
         .image-container {
             margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 100%;
             height: 300px;
             border-radius: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        .image-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            animation: float 20s infinite linear;
+        /* Mobile styles (default) */
+        @media (max-width: 767px) {
+            .image-container {
+                height: 250px;
+                margin-bottom: 20px;
+                border-radius: 12px;
+            }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .image-container {
+                height: 350px;
+            }
         }
 
-        .image-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            position: relative;
-            z-index: 2;
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            .image-container {
+                height: 400px;
+            }
         }
 
-        .image-placeholder {
-            color: white;
-            font-size: 3rem;
-            position: relative;
-            z-index: 2;
+        /* Large desktop styles */
+        @media (min-width: 1200px) {
+            .image-container {
+                height: 450px;
+            }
         }
 
         /* Enhanced Form Fields */
@@ -367,7 +391,7 @@
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(231,76,60,0.3);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -390,7 +414,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.6s ease;
         }
 
@@ -400,7 +424,7 @@
 
         .submit-button:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(231,76,60,0.4);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
         }
 
         .submit-button:active:not(:disabled) {
@@ -419,8 +443,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Input Icons */
@@ -458,8 +487,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .popup-content {
@@ -490,18 +524,24 @@
         }
 
         @keyframes gradientRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes slideInScale {
-            from { 
-                opacity: 0; 
-                transform: translateY(-50px) scale(0.8); 
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.8);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -513,9 +553,22 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         .popup-title {
@@ -569,7 +622,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.6s ease;
         }
 
@@ -598,11 +651,11 @@
                 gap: 15px;
                 padding: 0 15px;
             }
-            
+
             .main-content {
                 padding: 20px 15px;
             }
-            
+
             .form-container {
                 padding: 30px 20px;
             }
@@ -657,6 +710,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- HEADER SECTION -->
     <header>
@@ -680,7 +734,7 @@
             <p class="form-subtitle">Masjid Al-Irsyad, Telok Bagan - Sila lengkapkan maklumat di bawah</p>
 
             <!-- Success/Error Messages (Hidden if using popup) -->
-            @if(session('error'))
+            @if (session('error'))
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-circle"></i>
                     {{ session('error') }}
@@ -688,27 +742,27 @@
             @endif
 
             <!-- Enhanced Image Container -->
+            <!-- Include the map view -->
             <div class="image-container">
-                <div class="image-placeholder">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
+                @include('anak-kariah.map-view', [
+                    'boundaries' => \App\Models\KariahBoundary::where('is_active', true)->get(),
+                    'mosque' =>
+                        \App\Models\MosqueLocation::first() ??
+                        (object) ['latitude' => 1.4556, 'longitude' => 103.7645, 'zoom_level' => 15],
+                ])
             </div>
 
             <form id="anak-kariah-form" action="{{ route('anak-kariah.store') }}" method="POST">
                 @csrf
-                
+
                 <div class="form-group">
                     <label for="full_name">
                         <i class="fas fa-user"></i> Nama Penuh:
                     </label>
                     <div class="input-group">
-                        <input type="text" 
-                               id="full_name" 
-                               name="full_name" 
-                               class="form-control @error('full_name') is-invalid @enderror" 
-                               placeholder="Masukkan nama penuh anda" 
-                               value="{{ old('full_name') }}"
-                               required>
+                        <input type="text" id="full_name" name="full_name"
+                            class="form-control @error('full_name') is-invalid @enderror"
+                            placeholder="Masukkan nama penuh anda" value="{{ old('full_name') }}" required>
                         <i class="fas fa-user input-icon"></i>
                     </div>
                     @error('full_name')
@@ -724,13 +778,9 @@
                         <i class="fas fa-id-card"></i> Nombor IC:
                     </label>
                     <div class="input-group">
-                        <input type="text" 
-                               id="ic_number" 
-                               name="ic_number" 
-                               class="form-control @error('ic_number') is-invalid @enderror" 
-                               placeholder="Contoh: 890101-01-1234" 
-                               value="{{ old('ic_number') }}"
-                               required>
+                        <input type="text" id="ic_number" name="ic_number"
+                            class="form-control @error('ic_number') is-invalid @enderror"
+                            placeholder="Contoh: 890101-01-1234" value="{{ old('ic_number') }}" required>
                         <i class="fas fa-id-card input-icon"></i>
                     </div>
                     @error('ic_number')
@@ -745,11 +795,8 @@
                     <label for="address">
                         <i class="fas fa-home"></i> Alamat:
                     </label>
-                    <textarea id="address" 
-                              name="address" 
-                              class="form-control @error('address') is-invalid @enderror" 
-                              placeholder="Masukkan alamat lengkap anda" 
-                              required>{{ old('address') }}</textarea>
+                    <textarea id="address" name="address" class="form-control @error('address') is-invalid @enderror"
+                        placeholder="Masukkan alamat lengkap anda" required>{{ old('address') }}</textarea>
                     @error('address')
                         <div class="invalid-feedback">
                             <i class="fas fa-exclamation-triangle"></i>
@@ -762,21 +809,31 @@
                     <label for="areas">
                         <i class="fas fa-map-marker-alt"></i> Kawasan:
                     </label>
-                    <select id="areas" 
-                            name="areas" 
-                            class="form-control @error('areas') is-invalid @enderror" 
-                            required>
+                    <select id="areas" name="areas" class="form-control @error('areas') is-invalid @enderror"
+                        required>
                         <option value="" disabled {{ old('areas') ? '' : 'selected' }}>Pilih Kawasan</option>
-                        <option value="Kampung Luar" {{ old('areas') == 'Kampung Luar' ? 'selected' : '' }}>Kampung Luar</option>
-                        <option value="Kampung Padang Mengkudu" {{ old('areas') == 'Kampung Padang Mengkudu' ? 'selected' : '' }}>Kampung Padang Mengkudu</option>
-                        <option value="Kampung Tengah" {{ old('areas') == 'Kampung Tengah' ? 'selected' : '' }}>Kampung Tengah</option>
-                        <option value="Lorong Kenanga" {{ old('areas') == 'Lorong Kenanga' ? 'selected' : '' }}>Lorong Kenanga</option>
-                        <option value="Lorong Penghulu Lama" {{ old('areas') == 'Lorong Penghulu Lama' ? 'selected' : '' }}>Lorong Penghulu Lama</option>
-                        <option value="Lorong Tok Imam" {{ old('areas') == 'Lorong Tok Imam' ? 'selected' : '' }}>Lorong Tok Imam</option>
-                        <option value="Taman Bagan Indah" {{ old('areas') == 'Taman Bagan Indah' ? 'selected' : '' }}>Taman Bagan Indah</option>
-                        <option value="Taman Bagan Permai" {{ old('areas') == 'Taman Bagan Permai' ? 'selected' : '' }}>Taman Bagan Permai</option>
-                        <option value="Taman Desa Kiara" {{ old('areas') == 'Taman Desa Kiara' ? 'selected' : '' }}>Taman Desa Kiara</option>
-                        <option value="Taman Seri Bagan" {{ old('areas') == 'Taman Seri Bagan' ? 'selected' : '' }}>Taman Seri Bagan</option>
+                        <option value="Kampung Luar" {{ old('areas') == 'Kampung Luar' ? 'selected' : '' }}>Kampung
+                            Luar</option>
+                        <option value="Kampung Padang Mengkudu"
+                            {{ old('areas') == 'Kampung Padang Mengkudu' ? 'selected' : '' }}>Kampung Padang Mengkudu
+                        </option>
+                        <option value="Kampung Tengah" {{ old('areas') == 'Kampung Tengah' ? 'selected' : '' }}>Kampung
+                            Tengah</option>
+                        <option value="Lorong Kenanga" {{ old('areas') == 'Lorong Kenanga' ? 'selected' : '' }}>Lorong
+                            Kenanga</option>
+                        <option value="Lorong Penghulu Lama"
+                            {{ old('areas') == 'Lorong Penghulu Lama' ? 'selected' : '' }}>Lorong Penghulu Lama
+                        </option>
+                        <option value="Lorong Tok Imam" {{ old('areas') == 'Lorong Tok Imam' ? 'selected' : '' }}>
+                            Lorong Tok Imam</option>
+                        <option value="Taman Bagan Indah" {{ old('areas') == 'Taman Bagan Indah' ? 'selected' : '' }}>
+                            Taman Bagan Indah</option>
+                        <option value="Taman Bagan Permai"
+                            {{ old('areas') == 'Taman Bagan Permai' ? 'selected' : '' }}>Taman Bagan Permai</option>
+                        <option value="Taman Desa Kiara" {{ old('areas') == 'Taman Desa Kiara' ? 'selected' : '' }}>
+                            Taman Desa Kiara</option>
+                        <option value="Taman Seri Bagan" {{ old('areas') == 'Taman Seri Bagan' ? 'selected' : '' }}>
+                            Taman Seri Bagan</option>
                     </select>
                     @error('areas')
                         <div class="invalid-feedback">
@@ -791,13 +848,9 @@
                         <i class="fas fa-phone"></i> Nombor Telefon:
                     </label>
                     <div class="input-group">
-                        <input type="text" 
-                               id="phone_number" 
-                               name="phone_number" 
-                               class="form-control @error('phone_number') is-invalid @enderror" 
-                               placeholder="Contoh: 012-3456789" 
-                               value="{{ old('phone_number') }}"
-                               required>
+                        <input type="text" id="phone_number" name="phone_number"
+                            class="form-control @error('phone_number') is-invalid @enderror"
+                            placeholder="Contoh: 012-3456789" value="{{ old('phone_number') }}" required>
                         <i class="fas fa-phone input-icon"></i>
                     </div>
                     @error('phone_number')
@@ -812,13 +865,12 @@
                     <label for="gender">
                         <i class="fas fa-venus-mars"></i> Jantina:
                     </label>
-                    <select id="gender" 
-                            name="gender" 
-                            class="form-control @error('gender') is-invalid @enderror" 
-                            required>
+                    <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror"
+                        required>
                         <option value="" disabled {{ old('gender') ? '' : 'selected' }}>Pilih Jantina</option>
                         <option value="Lelaki" {{ old('gender') == 'Lelaki' ? 'selected' : '' }}>Lelaki</option>
-                        <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                        <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan
+                        </option>
                     </select>
                     @error('gender')
                         <div class="invalid-feedback">
@@ -833,12 +885,9 @@
                         <i class="fas fa-calendar-alt"></i> Tarikh Lahir:
                     </label>
                     <div class="input-group">
-                        <input type="date" 
-                               id="date_of_birth" 
-                               name="date_of_birth" 
-                               class="form-control @error('date_of_birth') is-invalid @enderror" 
-                               value="{{ old('date_of_birth') }}"
-                               required>
+                        <input type="date" id="date_of_birth" name="date_of_birth"
+                            class="form-control @error('date_of_birth') is-invalid @enderror"
+                            value="{{ old('date_of_birth') }}" required>
                         <i class="fas fa-calendar-alt input-icon"></i>
                     </div>
                     @error('date_of_birth')
@@ -851,16 +900,13 @@
 
                 <div class="checkbox-container">
                     <div class="checkbox-wrapper">
-                        <input type="checkbox" 
-                               id="agreement" 
-                               name="agreement" 
-                               value="1"
-                               {{ old('agreement') ? 'checked' : '' }}
-                               required>
+                        <input type="checkbox" id="agreement" name="agreement" value="1"
+                            {{ old('agreement') ? 'checked' : '' }} required>
                     </div>
                     <label for="agreement" class="checkbox-label">
                         <i class="fas fa-shield-alt" style="color: #3498db; margin-right: 5px;"></i>
-                        Saya bersetuju dengan penggunaan data peribadi saya oleh pihak masjid untuk tujuan pengurusan anak kariah dan program-program berkaitan.
+                        Saya bersetuju dengan penggunaan data peribadi saya oleh pihak masjid untuk tujuan pengurusan
+                        anak kariah dan program-program berkaitan.
                     </label>
                 </div>
                 @error('agreement')
@@ -888,7 +934,7 @@
             <h2 class="popup-title">Pendaftaran Berjaya!</h2>
             <p class="popup-message">
                 <strong>TERIMA KASIH!</strong><br>
-                Terima kasih kerana mendaftarkan sebagai anak kariah Masjid Al-Irsyad. 
+                Terima kasih kerana mendaftarkan sebagai anak kariah Masjid Al-Irsyad.
                 Maklumat telah berjaya disimpan.
                 <br><br>
                 <em>Semoga Allah memberkati anda dan sekeluarga.</em>
@@ -905,7 +951,7 @@
     <!-- JavaScript -->
     <script>
         // Check if there's a success message from Laravel session
-        @if(session('success'))
+        @if (session('success'))
             document.addEventListener('DOMContentLoaded', function() {
                 showSuccessPopup();
             });
@@ -917,13 +963,13 @@
             const loadingSpinner = document.getElementById('loadingSpinner');
             const submitIcon = document.getElementById('submitIcon');
             const submitText = document.getElementById('submitText');
-            
+
             // Show loading state
             submitBtn.disabled = true;
             loadingSpinner.style.display = 'block';
             submitIcon.style.display = 'none';
             submitText.textContent = 'Memproses...';
-            
+
             // Let the form submit naturally to Laravel
             // Loading state will be reset when page reloads
         });
@@ -932,10 +978,10 @@
         function showSuccessPopup() {
             const popup = document.getElementById('successPopup');
             popup.classList.add('show');
-            
+
             // Add confetti effect
             createConfetti();
-            
+
             // Auto-hide after 30 seconds if user doesn't interact
             setTimeout(() => {
                 if (popup.classList.contains('show')) {
@@ -967,7 +1013,7 @@
         function createConfetti() {
             const colors = ['#27ae60', '#3498db', '#e74c3c', '#f39c12', '#9b59b6'];
             const confettiCount = 100;
-            
+
             for (let i = 0; i < confettiCount; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
@@ -983,9 +1029,9 @@
                         animation: confettiFall ${2 + Math.random() * 3}s linear forwards;
                         transform: rotate(${Math.random() * 360}deg);
                     `;
-                    
+
                     document.body.appendChild(confetti);
-                    
+
                     setTimeout(() => {
                         confetti.remove();
                     }, 5000);
@@ -1038,7 +1084,7 @@
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
-                
+
                 ripple.style.cssText = `
                     position: absolute;
                     width: ${size}px;
@@ -1051,11 +1097,11 @@
                     animation: ripple 0.6s ease-out;
                     pointer-events: none;
                 `;
-                
+
                 this.style.position = 'relative';
                 this.style.overflow = 'hidden';
                 this.appendChild(ripple);
-                
+
                 setTimeout(() => {
                     ripple.remove();
                 }, 600);
@@ -1079,7 +1125,7 @@
             input.addEventListener('focus', function() {
                 this.parentElement.classList.add('focused');
             });
-            
+
             input.addEventListener('blur', function() {
                 this.parentElement.classList.remove('focused');
             });
@@ -1109,7 +1155,7 @@
         document.getElementById('anak-kariah-form').addEventListener('submit', function(e) {
             let isValid = true;
             const requiredFields = this.querySelectorAll('[required]');
-            
+
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
                     field.classList.add('is-invalid');
@@ -1118,7 +1164,7 @@
                     field.classList.remove('is-invalid');
                 }
             });
-            
+
             // IC Number validation
             const icNumber = document.getElementById('ic_number').value;
             const icPattern = /^\d{6}-\d{2}-\d{4}$/;
@@ -1126,7 +1172,7 @@
                 document.getElementById('ic_number').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             // Phone number validation
             const phoneNumber = document.getElementById('phone_number').value;
             const phonePattern = /^\d{3}-\d{7,8}$/;
@@ -1134,7 +1180,7 @@
                 document.getElementById('phone_number').classList.add('is-invalid');
                 isValid = false;
             }
-            
+
             if (!isValid) {
                 e.preventDefault();
                 // Reset button state
@@ -1142,12 +1188,12 @@
                 const loadingSpinner = document.getElementById('loadingSpinner');
                 const submitIcon = document.getElementById('submitIcon');
                 const submitText = document.getElementById('submitText');
-                
+
                 submitBtn.disabled = false;
                 loadingSpinner.style.display = 'none';
                 submitIcon.style.display = 'inline';
                 submitText.textContent = 'Daftar Sekarang';
-                
+
                 // Show error message
                 alert('Sila lengkapkan semua maklumat dengan betul sebelum menghantar.');
             }
@@ -1161,4 +1207,5 @@
         });
     </script>
 </body>
+
 </html>
