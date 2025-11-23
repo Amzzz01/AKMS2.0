@@ -87,3 +87,26 @@ Route::get('/anak-kariah/statistics', [StatisticsController::class, 'index'])->n
 Route::get('/donate', function () {
     return view('donate');
 })->name('donate');
+
+
+// Public map view (for anak kariah registration)
+Route::get('/anak-kariah/map', [App\Http\Controllers\KariahMapController::class, 'publicView'])
+    ->name('anak-kariah.map');
+
+// Admin map management routes (protected by auth middleware)
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/kariah-map', [App\Http\Controllers\KariahMapController::class, 'adminIndex'])
+        ->name('admin.kariah-map.index');
+    
+    Route::post('/kariah-map', [App\Http\Controllers\KariahMapController::class, 'store'])
+        ->name('admin.kariah-map.store');
+    
+    Route::put('/kariah-map/{id}', [App\Http\Controllers\KariahMapController::class, 'update'])
+        ->name('admin.kariah-map.update');
+    
+    Route::delete('/kariah-map/{id}', [App\Http\Controllers\KariahMapController::class, 'destroy'])
+        ->name('admin.kariah-map.destroy');
+    
+    Route::post('/kariah-map/update-mosque', [App\Http\Controllers\KariahMapController::class, 'updateMosqueLocation'])
+        ->name('admin.kariah-map.update-mosque');
+});
